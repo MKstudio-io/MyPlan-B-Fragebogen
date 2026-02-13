@@ -1,0 +1,498 @@
+{
+  "landingPage": {
+    "title": "Deine persönliche Potenzialanalyse",
+    "subtitle": "Beantworte ein paar Fragen – und ich finde passende Wege für dich.",
+    "cards": [
+      {
+        "id": "erwachsene",
+        "title": "Für Erwachsene",
+        "subtitle": "Neuorientierung, Jobwechsel oder Klarheit im Beruf",
+        "bullets": [
+          "Analyse deiner beruflichen Grundlage",
+          "Passende Rollen und Arbeitsumfelder",
+          "Konkrete nächste Schritte"
+        ],
+        "buttonText": "Analyse starten",
+        "subcategories": [
+          {
+            "id": "beruflich",
+            "label": "Berufliche Neuorientierung",
+            "description": "Du suchst berufliche Klarheit oder willst dich verändern",
+            "variantId": "erwachsene-beruflich"
+          },
+          {
+            "id": "privat",
+            "label": "Private Veränderung",
+            "description": "Du stehst vor einer privaten Umbruchphase",
+            "variantId": "erwachsene-privat",
+            "placeholder": true
+          }
+        ]
+      },
+      {
+        "id": "schueler-eltern",
+        "title": "Für Schüler:innen + Eltern",
+        "subtitle": "Schulwahl, Berufsorientierung oder Lernunterstützung",
+        "bullets": [
+          "Stärken und Lerntyp erkennen",
+          "Passende Bildungswege & Berufsfelder",
+          "Konkrete Empfehlungen für den weiteren Weg"
+        ],
+        "buttonText": "Analyse starten",
+        "variantId": "schueler-eltern"
+      }
+    ]
+  },
+  "globalTexts": {
+    "nextButton": "Weiter",
+    "backButton": "Zurück",
+    "submitButton": "Fragebogen absenden",
+    "requiredFieldHint": "* Pflichtfeld",
+    "privacyPolicyUrl": "/datenschutz"
+  },
+  "variants": {
+    "erwachsene-beruflich": {
+      "id": "erwachsene-beruflich",
+      "title": "Erwachsene in beruflicher Neuorientierung",
+      "shortTitle": "Erwachsene – Beruflich",
+      "intro": "Dieser Fragebogen hilft mir, deine Situation besser zu verstehen – nicht um dich zu bewerten, sondern um passende Wege für dich zu finden.\n\nEs gibt keine falschen Antworten. Auch \"weiß ich nicht\" ist völlig OK. Nimm dir Zeit und antworte so ehrlich, wie es sich für dich richtig anfühlt.",
+      "steps": [
+        {
+          "id": "geburtsdaten",
+          "title": "Geburtsdaten",
+          "questions": [
+            {
+              "id": "birth_date",
+              "label": "Geburtsdatum",
+              "type": "date",
+              "required": true
+            },
+            {
+              "id": "birth_time",
+              "label": "Geburtszeit",
+              "type": "time",
+              "required": true,
+              "hint": "So genau wie möglich. Falls du deine genaue Geburtszeit nicht kennst, schau im Mutter-Kind-Pass oder auf der Geburtsurkunde nach."
+            },
+            {
+              "id": "birth_place",
+              "label": "Geburtsort",
+              "type": "place-autocomplete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "id": "aktuelle-situation",
+          "title": "Aktuelle Situation",
+          "questions": [
+            {
+              "id": "current_status",
+              "label": "Wo stehst du gerade?",
+              "type": "radio",
+              "required": true,
+              "options": [
+                "Angestellt (zufrieden genug)",
+                "Angestellt (will wechseln)",
+                "Selbstständig (läuft nicht wie erhofft)",
+                "Arbeitslos / arbeitssuchend",
+                "Karenz / Auszeit",
+                "In Ausbildung / Umschulung"
+              ],
+              "hasOtherOption": true,
+              "otherOptionLabel": "Sonstiges"
+            },
+            {
+              "id": "education_level",
+              "label": "Höchste abgeschlossene Ausbildung",
+              "type": "dropdown",
+              "required": false,
+              "options": [
+                "Pflichtschule",
+                "Lehre",
+                "Matura",
+                "FH / Uni-Abschluss",
+                "Sonstiges"
+              ]
+            },
+            {
+              "id": "work_field",
+              "label": "In welchem Berufsfeld hast du bisher gearbeitet?",
+              "type": "textarea",
+              "required": false,
+              "placeholder": "z.B. Einzelhandel, Pflege, Büro/Verwaltung, Handwerk, Gastronomie...",
+              "rows": 2
+            }
+          ]
+        },
+        {
+          "id": "was-funktioniert",
+          "title": "Was funktioniert – was nicht",
+          "questions": [
+            {
+              "id": "what_works",
+              "label": "Was läuft im Beruf aktuell gut oder fühlt sich richtig an?",
+              "type": "textarea-with-dontknow",
+              "required": false,
+              "placeholder": "z.B. Ich mag kreative Aufgaben, arbeite gern selbstständig, der direkte Kontakt mit Menschen liegt mir...",
+              "dontKnowLabel": "Weiß ich gerade nicht"
+            },
+            {
+              "id": "what_frustrates",
+              "label": "Was frustriert dich oder kostet dich Kraft?",
+              "type": "textarea-with-dontknow",
+              "required": false,
+              "placeholder": "z.B. Zu viele Meetings ohne Ergebnis, ständiger Zeitdruck, keine Wertschätzung, monotone Tätigkeiten...",
+              "dontKnowLabel": "Weiß ich gerade nicht"
+            }
+          ]
+        },
+        {
+          "id": "interessen-wuensche",
+          "title": "Interessen & Wünsche",
+          "questions": [
+            {
+              "id": "interests",
+              "label": "Was interessiert dich – auch wenn du es noch nie beruflich gemacht hast?",
+              "type": "textarea-with-dontknow",
+              "required": false,
+              "placeholder": "z.B. Menschen beraten, Dinge organisieren, kreativ gestalten, mit den Händen arbeiten, komplexe Probleme lösen...",
+              "dontKnowLabel": "Weiß ich gerade nicht"
+            },
+            {
+              "id": "dream_activity",
+              "label": "Wenn Geld keine Rolle spielen würde – womit würdest du deine Zeit verbringen?",
+              "type": "textarea-with-dontknow",
+              "required": false,
+              "placeholder": "z.B. Im Garten arbeiten, anderen helfen, etwas aufbauen, lernen, reisen, mich um Familie kümmern...",
+              "dontKnowLabel": "Weiß ich gerade nicht"
+            }
+          ]
+        },
+        {
+          "id": "beduerfnisse",
+          "title": "Bedürfnisse & Abschluss",
+          "questions": [
+            {
+              "id": "needs",
+              "label": "Was brauchst du jetzt am dringendsten?",
+              "type": "checkbox-group",
+              "required": false,
+              "options": [
+                "Konkrete Jobideen oder Richtungen",
+                "Klarheit über meine Stärken",
+                "Mut für Veränderung",
+                "Finanzielle Sicherheit",
+                "Erstmal Struktur im Alltag"
+              ],
+              "hasOtherOption": true,
+              "otherOptionLabel": "Anderes",
+              "exclusiveOption": "Weiß ich nicht"
+            },
+            {
+              "id": "additional_info",
+              "label": "Was müsste ich noch wissen, damit wir gut zusammenarbeiten können?",
+              "type": "textarea",
+              "required": false,
+              "placeholder": "z.B. gesundheitliche Einschränkungen, Betreuungspflichten, regionale Gebundenheit...",
+              "hint": "Gibt es etwas, das für deine Situation wichtig ist und das ich wissen sollte?"
+            }
+          ]
+        },
+        {
+          "id": "kontakt",
+          "title": "Kontaktdaten & Absenden",
+          "questions": [
+            {
+              "id": "first_name",
+              "label": "Vorname",
+              "type": "text",
+              "required": true
+            },
+            {
+              "id": "last_name",
+              "label": "Nachname",
+              "type": "text",
+              "required": true
+            },
+            {
+              "id": "email",
+              "label": "E-Mail-Adresse",
+              "type": "email",
+              "required": true
+            },
+            {
+              "id": "phone",
+              "label": "Telefonnummer",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "id": "gdpr_consent",
+              "label": "Datenschutz",
+              "type": "gdpr-checkbox",
+              "required": true,
+              "gdprText": "Ich stimme zu, dass meine Angaben zum Zweck der persönlichen Potenzialanalyse verarbeitet werden. Meine Daten werden vertraulich behandelt und nicht an Dritte weitergegeben. [Datenschutzerklärung lesen](/datenschutz)"
+            }
+          ]
+        }
+      ],
+      "confirmationTitle": "Vielen Dank, {firstName}!",
+      "confirmationText": "Deine Angaben sind bei mir angekommen. Ich erstelle ein persönliches Profil und bereite konkrete Empfehlungen für dich vor. Innerhalb weniger Werktage melde ich mich bei dir.",
+      "emailSubjectClient": "Danke für deine Angaben – so geht es weiter",
+      "emailSubjectAdvisor": "[Erwachsene – Beruflich] {name} – {date}"
+    },
+    "erwachsene-privat": {
+      "id": "erwachsene-privat",
+      "title": "Erwachsene – Private Veränderung",
+      "shortTitle": "Erwachsene – Privat",
+      "intro": "",
+      "placeholder": true,
+      "placeholderText": "Dieser Fragebogen wird gerade entwickelt und steht bald zur Verfügung. Bitte schau in ein paar Tagen nochmal vorbei!",
+      "steps": [],
+      "confirmationTitle": "",
+      "confirmationText": "",
+      "emailSubjectClient": "",
+      "emailSubjectAdvisor": ""
+    },
+    "schueler-eltern": {
+      "id": "schueler-eltern",
+      "title": "Für Schüler:innen + Eltern",
+      "shortTitle": "Schüler:in + Eltern",
+      "intro": "Dieser Fragebogen hilft mir, dein Kind besser zu verstehen – nicht um es zu bewerten, sondern um passende Wege zu finden.\n\nEs gibt keine falschen Antworten. Auch \"weiß ich nicht\" ist völlig OK. Nimm dir Zeit und antworte so ehrlich, wie es sich für dich richtig anfühlt.",
+      "steps": [
+        {
+          "id": "geburtsdaten-kind",
+          "title": "Geburtsdaten des Kindes",
+          "questions": [
+            {
+              "id": "child_first_name",
+              "label": "Vorname des Kindes",
+              "type": "text",
+              "required": true,
+              "hint": "Damit die Analyse persönlich formuliert werden kann."
+            },
+            {
+              "id": "birth_date",
+              "label": "Geburtsdatum",
+              "type": "date",
+              "required": true
+            },
+            {
+              "id": "birth_time",
+              "label": "Geburtszeit",
+              "type": "time",
+              "required": true,
+              "hint": "Falls du die genaue Geburtszeit nicht kennst, schau im Mutter-Kind-Pass oder auf der Geburtsurkunde nach."
+            },
+            {
+              "id": "birth_place",
+              "label": "Geburtsort",
+              "type": "place-autocomplete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "id": "schulsituation",
+          "title": "Schulsituation & Fächer",
+          "questions": [
+            {
+              "id": "school_type",
+              "label": "Aktuelle Schulform",
+              "type": "dropdown",
+              "required": true,
+              "options": [
+                "Volksschule",
+                "Mittelschule",
+                "Gymnasium (Unterstufe)",
+                "Gymnasium (Oberstufe)",
+                "HTL",
+                "HAK",
+                "HLW",
+                "Andere BHS",
+                "Polytechnische Schule",
+                "Berufsschule",
+                "Andere"
+              ]
+            },
+            {
+              "id": "favorite_subjects",
+              "label": "Lieblingsfächer",
+              "type": "chips",
+              "required": false,
+              "hint": "Mehrere möglich",
+              "options": [
+                "Mathematik",
+                "Deutsch",
+                "Englisch",
+                "Physik",
+                "Chemie",
+                "Biologie",
+                "Geschichte",
+                "Geographie",
+                "Informatik",
+                "Wirtschaft",
+                "Sport",
+                "Kunst/Zeichnen",
+                "Musik",
+                "Sprachen (andere)",
+                "Technisches Werken",
+                "Textiles Werken"
+              ]
+            },
+            {
+              "id": "difficult_subjects",
+              "label": "Schwierige Fächer",
+              "type": "chips",
+              "required": false,
+              "hint": "Mehrere möglich",
+              "options": [
+                "Mathematik",
+                "Deutsch",
+                "Englisch",
+                "Physik",
+                "Chemie",
+                "Biologie",
+                "Geschichte",
+                "Geographie",
+                "Informatik",
+                "Wirtschaft",
+                "Sport",
+                "Kunst/Zeichnen",
+                "Musik",
+                "Sprachen (andere)",
+                "Technisches Werken",
+                "Textiles Werken"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lernverhalten",
+          "title": "Lernverhalten & Motivation",
+          "questions": [
+            {
+              "id": "learning_pace",
+              "label": "Lerntempo",
+              "type": "dropdown",
+              "required": false,
+              "options": [
+                "Schnell",
+                "Mittel",
+                "Langsam/gründlich"
+              ]
+            },
+            {
+              "id": "concentration",
+              "label": "Konzentration",
+              "type": "dropdown",
+              "required": false,
+              "options": [
+                "Fällt leicht",
+                "Wechselhaft",
+                "Fällt schwer"
+              ]
+            },
+            {
+              "id": "learning_style",
+              "label": "Bevorzugter Stil",
+              "type": "dropdown",
+              "required": false,
+              "options": [
+                "Praxis/Hands-on",
+                "Theorie/Lesen",
+                "Beides gleich"
+              ]
+            },
+            {
+              "id": "motivation",
+              "label": "Aktuelle Motivation für Schule",
+              "type": "dropdown",
+              "required": false,
+              "options": [
+                "Hoch – lernt gerne",
+                "Mittel – mal so, mal so",
+                "Niedrig – eher unmotiviert"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "interessen-richtung",
+          "title": "Interessen & Richtung",
+          "questions": [
+            {
+              "id": "interests_hobbies",
+              "label": "Interessen & Hobbys",
+              "type": "textarea",
+              "required": true,
+              "placeholder": "z.B. Gaming, Programmieren, Sport, Musik, Tiere, Technik, Kunst, Social Media...",
+              "hint": "Was macht der/die Jugendliche gerne in der Freizeit? Wofür kann er/sie sich begeistern?"
+            },
+            {
+              "id": "pressures",
+              "label": "Druck oder Unsicherheiten",
+              "type": "textarea",
+              "required": false,
+              "placeholder": "z.B. Eltern erwarten bestimmten Weg, Angst vor falscher Entscheidung, weiß nicht was passt...",
+              "hint": "Optional: Gibt es Druck von außen oder innere Unsicherheiten?"
+            },
+            {
+              "id": "path_tendency",
+              "label": "Tendenz für den weiteren Weg",
+              "type": "dropdown",
+              "required": false,
+              "options": [
+                "Eher weiter Schule (Matura)",
+                "Eher Lehre/Ausbildung",
+                "Noch komplett offen"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kontakt-eltern",
+          "title": "Kontaktdaten & Absenden",
+          "questions": [
+            {
+              "id": "first_name",
+              "label": "Vorname (Elternteil)",
+              "type": "text",
+              "required": true
+            },
+            {
+              "id": "last_name",
+              "label": "Nachname (Elternteil)",
+              "type": "text",
+              "required": true
+            },
+            {
+              "id": "email",
+              "label": "E-Mail-Adresse",
+              "type": "email",
+              "required": true
+            },
+            {
+              "id": "phone",
+              "label": "Telefonnummer",
+              "type": "tel",
+              "required": false
+            },
+            {
+              "id": "gdpr_consent",
+              "label": "Datenschutz",
+              "type": "gdpr-checkbox",
+              "required": true,
+              "gdprText": "Ich stimme als erziehungsberechtigte Person zu, dass die Angaben meines Kindes zum Zweck der persönlichen Potenzialanalyse verarbeitet werden. Die Daten werden vertraulich behandelt und nicht an Dritte weitergegeben. [Datenschutzerklärung lesen](/datenschutz)"
+            }
+          ]
+        }
+      ],
+      "confirmationTitle": "Vielen Dank, {firstName}!",
+      "confirmationText": "Deine Angaben sind bei mir angekommen. Ich erstelle ein persönliches Profil für dein Kind und bereite konkrete Empfehlungen vor. Innerhalb weniger Werktage melde ich mich bei dir.",
+      "emailSubjectClient": "Danke für deine Angaben – so geht es weiter",
+      "emailSubjectAdvisor": "[Schüler:in + Eltern] {name} – {date}"
+    }
+  }
+}
