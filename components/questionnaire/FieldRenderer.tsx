@@ -12,6 +12,7 @@ import { DropdownField } from '@/components/fields/DropdownField'
 import { ChipsField } from '@/components/fields/ChipsField'
 import { CheckboxGroupField } from '@/components/fields/CheckboxGroupField'
 import { GdprCheckbox } from '@/components/fields/GdprCheckbox'
+import { SliderField } from '@/components/fields/SliderField'
 
 interface FieldRendererProps {
   config: QuestionConfig
@@ -134,7 +135,17 @@ export function FieldRenderer({ config, value, error, onChange }: FieldRendererP
         />
       )
 
+    case 'slider':
+      return (
+        <SliderField
+          config={config}
+          value={value as number | undefined}
+          error={error}
+          onChange={onChange as (v: number) => void}
+        />
+      )
+
     default:
-      return <p className="text-red-500">Unbekannter Feldtyp: {config.type}</p>
+      return <p className="text-destructive">Unbekannter Feldtyp: {config.type}</p>
   }
 }

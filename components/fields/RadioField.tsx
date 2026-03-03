@@ -54,7 +54,7 @@ export function RadioField({ config, value, error, onChange }: RadioFieldProps) 
             </div>
             {isOtherSelected && (
               <Input
-                placeholder={`${config.otherOptionLabel || 'Sonstiges'} eingeben...`}
+                placeholder={config.otherOptionPlaceholder || `${config.otherOptionLabel || 'Sonstiges'} eingeben...`}
                 value={otherText}
                 onChange={(e) => handleOtherTextChange(e.target.value)}
                 className="ml-6"
@@ -68,7 +68,7 @@ export function RadioField({ config, value, error, onChange }: RadioFieldProps) 
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

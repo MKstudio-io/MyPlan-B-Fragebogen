@@ -13,6 +13,39 @@ export type FieldType =
   | 'email'
   | 'tel'
   | 'gdpr-checkbox'
+  | 'slider'
+
+/** Condition for conditional field visibility */
+export interface FieldCondition {
+  fieldId: string
+  operator: 'equals' | 'notEquals' | 'includes'
+  value: string | string[]
+}
+
+/** Evaluate whether a field condition is met */
+export function evaluateCondition(
+  condition: FieldCondition,
+  answers: Record<string, unknown>
+): boolean {
+  const fieldValue = answers[condition.fieldId]
+  switch (condition.operator) {
+    case 'equals':
+      return fieldValue === condition.value
+    case 'notEquals':
+      return fieldValue !== condition.value
+    case 'includes': {
+      if (Array.isArray(condition.value)) {
+        return condition.value.includes(fieldValue as string)
+      }
+      if (Array.isArray(fieldValue)) {
+        return fieldValue.includes(condition.value)
+      }
+      return fieldValue === condition.value
+    }
+    default:
+      return true
+  }
+}
 
 /** A single question/field in the questionnaire */
 export interface QuestionConfig {
@@ -26,9 +59,15 @@ export interface QuestionConfig {
   dontKnowLabel?: string
   hasOtherOption?: boolean
   otherOptionLabel?: string
+  otherOptionPlaceholder?: string
   exclusiveOption?: string
   rows?: number
   gdprText?: string
+  condition?: FieldCondition
+  min?: number
+  max?: number
+  minLabel?: string
+  maxLabel?: string
 }
 
 /** A single step in the questionnaire */
@@ -65,7 +104,18 @@ export interface VariantConfig {
   intro: string
   placeholder?: boolean
   placeholderText?: string
+  titleLine1?: string
+  titleLine2?: string
   steps: StepConfig[]
+  submitButtonLabel?: string
+  crossVariantHint?: {
+    triggerField: string
+    triggerValue?: string
+    triggerValues?: string[]
+    message: string
+    linkText: string
+    linkVariantId: string
+  }
   confirmationTitle: string
   confirmationText: string
   emailSubjectClient: string

@@ -11,15 +11,15 @@ interface GdprCheckboxProps {
   onChange: (value: boolean) => void
 }
 
-/** Parse simple markdown links [text](url) to JSX */
-function renderGdprText(text: string) {
-  const parts = text.split(/(\[.*?\]\(.*?\))/)
+/** Parse a single line for markdown links [text](url) */
+function renderLineParts(line: string, lineIdx: number) {
+  const parts = line.split(/(\[.*?\]\(.*?\))/)
   return parts.map((part, i) => {
     const match = part.match(/\[(.*?)\]\((.*?)\)/)
     if (match) {
       return (
         <a
-          key={i}
+          key={`${lineIdx}-${i}`}
           href={match[2]}
           target={match[2].startsWith('/') ? '_self' : '_blank'}
           rel="noopener noreferrer"
@@ -29,8 +29,19 @@ function renderGdprText(text: string) {
         </a>
       )
     }
-    return <span key={i}>{part}</span>
+    return <span key={`${lineIdx}-${i}`}>{part}</span>
   })
+}
+
+/** Parse GDPR text with newlines and markdown links */
+function renderGdprText(text: string) {
+  const lines = text.split('\n')
+  return lines.map((line, lineIdx) => (
+    <span key={lineIdx}>
+      {lineIdx > 0 && <br />}
+      {renderLineParts(line, lineIdx)}
+    </span>
+  ))
 }
 
 export function GdprCheckbox({ config, value, error, onChange }: GdprCheckboxProps) {
@@ -51,7 +62,7 @@ export function GdprCheckbox({ config, value, error, onChange }: GdprCheckboxPro
         </Label>
       </div>
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

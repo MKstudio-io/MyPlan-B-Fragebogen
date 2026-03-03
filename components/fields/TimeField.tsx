@@ -38,7 +38,7 @@ export function TimeField({ config, value, error, onChange }: TimeFieldProps) {
       </Label>
       <div className="grid grid-cols-2 gap-2 max-w-[200px]">
         <Select value={hour} onValueChange={(v) => updatePart('hour', v)}>
-          <SelectTrigger className={error ? 'border-red-500' : ''}>
+          <SelectTrigger className={error ? 'border-destructive' : ''}>
             <SelectValue placeholder="Std" />
           </SelectTrigger>
           <SelectContent>
@@ -49,7 +49,7 @@ export function TimeField({ config, value, error, onChange }: TimeFieldProps) {
         </Select>
 
         <Select value={minute} onValueChange={(v) => updatePart('minute', v)}>
-          <SelectTrigger className={error ? 'border-red-500' : ''}>
+          <SelectTrigger className={error ? 'border-destructive' : ''}>
             <SelectValue placeholder="Min" />
           </SelectTrigger>
           <SelectContent>
@@ -63,7 +63,7 @@ export function TimeField({ config, value, error, onChange }: TimeFieldProps) {
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

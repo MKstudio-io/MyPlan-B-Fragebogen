@@ -12,7 +12,7 @@ const config: Config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1060px",
       },
     },
     extend: {
@@ -50,6 +50,15 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        /* direct brand colours */
+        petrol: {
+          DEFAULT: "#1B6E7C",
+          dark: "#155A66",
+          light: "#E4F0F2",
+        },
+        amber: "#FFBD59",
+        peach: "#E89F7B",
+        cream: "#FDF8F3",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -57,7 +66,12 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Source Sans 3', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        serif: ['Lora', 'Georgia', 'Times New Roman', 'serif'],
+      },
+      boxShadow: {
+        'brand': '0 8px 30px rgba(27,110,124,0.08)',
+        'brand-lg': '0 12px 40px rgba(27,110,124,0.12)',
       },
       keyframes: {
         "accordion-down": {

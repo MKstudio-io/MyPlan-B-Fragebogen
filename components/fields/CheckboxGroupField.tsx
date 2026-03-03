@@ -104,7 +104,7 @@ export function CheckboxGroupField({ config, value, error, onChange }: CheckboxG
             </div>
             {isOtherSelected && (
               <Input
-                placeholder={`${otherLabel} eingeben...`}
+                placeholder={config.otherOptionPlaceholder || `${otherLabel} eingeben...`}
                 value={otherText}
                 onChange={(e) => handleOtherTextChange(e.target.value)}
                 className="ml-6"
@@ -118,7 +118,7 @@ export function CheckboxGroupField({ config, value, error, onChange }: CheckboxG
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

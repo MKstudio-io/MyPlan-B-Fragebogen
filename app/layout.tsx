@@ -1,8 +1,20 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import Image from 'next/image'
+import { Source_Sans_3, Lora } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const sourceSans = Source_Sans_3({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-sans',
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+})
 
 export const metadata: Metadata = {
   title: 'myplanb – Persönliche Potenzialanalyse',
@@ -16,21 +28,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-      <body className={inter.className}>
+      <body className={`${sourceSans.variable} ${lora.variable} font-sans`}>
         <div className="min-h-screen flex flex-col">
-          <header className="border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <header className="bg-primary text-primary-foreground shadow-[0_2px_20px_rgba(21,90,102,0.3)]">
             <div className="container flex h-16 items-center justify-between">
               <a href="/" className="flex items-center space-x-2">
-                <span className="text-xl font-semibold tracking-tight">
-                  myplanb
-                </span>
+                <Image
+                  src="/Logo_PlanB_ohneText_white_transparent.png"
+                  alt="MyPlanB"
+                  width={83}
+                  height={40}
+                  priority
+                />
               </a>
               <nav className="flex items-center space-x-6 text-sm">
                 <a
                   href="https://www.myplanb.at"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-white/70 hover:text-white transition-colors"
                 >
                   Zur Hauptseite
                 </a>
@@ -42,14 +58,14 @@ export default function RootLayout({
             {children}
           </main>
 
-          <footer className="border-t border-border/40 py-8 bg-muted/30">
+          <footer className="py-8 bg-petrol-dark text-white/70">
             <div className="container">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div className="text-sm text-muted-foreground">
+                <div className="text-sm">
                   &copy; {new Date().getFullYear()} myplanb
                 </div>
-                <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                  <a href="/datenschutz" className="hover:text-foreground transition-colors">
+                <div className="flex items-center space-x-4 text-sm">
+                  <a href="/datenschutz" className="hover:text-white transition-colors">
                     Datenschutz
                   </a>
                 </div>

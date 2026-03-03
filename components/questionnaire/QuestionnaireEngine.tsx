@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import type { VariantConfig } from '@/lib/types'
+import type { VariantConfig, CheckboxGroupValue } from '@/lib/types'
 import { validateStep } from '@/lib/validation'
 import { saveFormState, loadFormState, clearFormState } from '@/lib/session-storage'
 import config from '@/config/questionnaire.config'
@@ -118,7 +118,7 @@ export function QuestionnaireEngine({ variant }: QuestionnaireEngineProps) {
     setSubmitError(null)
 
     try {
-      const res = await fetch('/api/submit', {
+      const res = await fetch('/api/submit.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -139,7 +139,32 @@ export function QuestionnaireEngine({ variant }: QuestionnaireEngineProps) {
 
       // Get first name for confirmation page
       const firstName = (answers.first_name as string) || ''
-      router.push(`/bestaetigung?name=${encodeURIComponent(firstName)}&variant=${variant.id}`)
+      let redirectUrl = `/bestaetigung?name=${encodeURIComponent(firstName)}&variant=${variant.id}`
+
+      // Check cross-variant hint (e.g. career reorientation hint for privat variant)
+      if (variant.crossVariantHint) {
+        const { triggerField, triggerValue, triggerValues } = variant.crossVariantHint
+        const fieldValue = answers[triggerField]
+        let showCrossHint = false
+
+        // Support multiple trigger values (triggerValues array) or single triggerValue
+        const valuesToCheck = triggerValues || (triggerValue ? [triggerValue] : [])
+
+        if (fieldValue && typeof fieldValue === 'object' && 'selected' in (fieldValue as Record<string, unknown>)) {
+          // Checkbox-group field: check if any trigger value is in selected array
+          const selected = (fieldValue as CheckboxGroupValue).selected
+          showCrossHint = valuesToCheck.some(v => selected.includes(v))
+        } else if (typeof fieldValue === 'string') {
+          // Radio/text field: check if value matches any trigger value
+          showCrossHint = valuesToCheck.includes(fieldValue)
+        }
+
+        if (showCrossHint) {
+          redirectUrl += '&crossHint=1'
+        }
+      }
+
+      router.push(redirectUrl)
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Ein unerwarteter Fehler ist aufgetreten.')
     } finally {
@@ -162,6 +187,8 @@ export function QuestionnaireEngine({ variant }: QuestionnaireEngineProps) {
     return (
       <IntroScreen
         title={variant.title}
+        titleLine1={variant.titleLine1}
+        titleLine2={variant.titleLine2}
         intro={variant.intro}
         onContinue={() => setCurrentStep(0)}
       />
@@ -195,7 +222,7 @@ export function QuestionnaireEngine({ variant }: QuestionnaireEngineProps) {
             isSubmitting={isSubmitting}
             backLabel={globalTexts.backButton}
             nextLabel={globalTexts.nextButton}
-            submitLabel={globalTexts.submitButton}
+            submitLabel={variant.submitButtonLabel || globalTexts.submitButton}
             onBack={handleBack}
             onNext={handleSubmit}
           />
@@ -233,7 +260,7 @@ export function QuestionnaireEngine({ variant }: QuestionnaireEngineProps) {
             isSubmitting={false}
             backLabel={globalTexts.backButton}
             nextLabel={isLastStep ? 'Zur Zusammenfassung' : globalTexts.nextButton}
-            submitLabel={globalTexts.submitButton}
+            submitLabel={variant.submitButtonLabel || globalTexts.submitButton}
             onBack={handleBack}
             onNext={handleNext}
           />

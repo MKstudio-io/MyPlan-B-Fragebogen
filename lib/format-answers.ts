@@ -1,4 +1,5 @@
 import type { StepConfig, TextareaWithDontKnowValue, CheckboxGroupValue } from './types'
+import { evaluateCondition } from './types'
 import { OTHER_PREFIX } from './constants'
 
 /** Format a single answer value as readable text */
@@ -13,7 +14,15 @@ function formatValue(type: string, value: unknown): string {
     }
     case 'chips': {
       const arr = value as string[]
-      return arr.length > 0 ? arr.join(', ') : '–'
+      if (arr.length === 0) return '–'
+      const formatted = arr.map(item => {
+        if (item.startsWith(OTHER_PREFIX)) {
+          const text = item.slice(OTHER_PREFIX.length)
+          return `Sonstiges: ${text || '–'}`
+        }
+        return item
+      })
+      return formatted.join(', ')
     }
     case 'checkbox-group': {
       const v = value as CheckboxGroupValue
@@ -49,6 +58,7 @@ export function formatAnswersText(
     lines.push(`--- ${step.title} ---`)
     for (const question of step.questions) {
       if (question.type === 'gdpr-checkbox') continue // Skip GDPR in overview
+      if (question.condition && !evaluateCondition(question.condition, answers)) continue
       const val = formatValue(question.type, answers[question.id])
       lines.push(`${question.label}: ${val}`)
     }
@@ -68,6 +78,7 @@ export function formatAnswersHtml(
   for (const step of steps) {
     const rows = step.questions
       .filter(q => q.type !== 'gdpr-checkbox')
+      .filter(q => !q.condition || evaluateCondition(q.condition, answers))
       .map(question => {
         const val = formatValue(question.type, answers[question.id])
         return `<tr>

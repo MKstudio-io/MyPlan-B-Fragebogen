@@ -35,7 +35,7 @@ export function TextareaWithDontKnow({ config, value, error, onChange }: Textare
         onChange={(e) => handleTextChange(e.target.value)}
         disabled={dontKnow}
         rows={config.rows || 3}
-        className={`${error ? 'border-red-500' : ''} ${dontKnow ? 'opacity-50' : ''}`}
+        className={`${error ? 'border-destructive' : ''} ${dontKnow ? 'opacity-50' : ''}`}
       />
       <div className="flex items-center space-x-2">
         <Checkbox
@@ -54,7 +54,7 @@ export function TextareaWithDontKnow({ config, value, error, onChange }: Textare
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

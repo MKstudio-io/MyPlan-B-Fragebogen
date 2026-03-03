@@ -40,17 +40,17 @@ Automatisch versendet vom myplanb Fragebogen.`
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #2D3748; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: #F7FAFC; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-    <h1 style="font-size: 20px; margin: 0 0 8px;">Neuer Fragebogen eingegangen</h1>
-    <p style="margin: 0; color: #718096;">
+<body style="font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #2D2D2D; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: #FDF8F3; border-radius: 14px; padding: 24px; margin-bottom: 24px;">
+    <h1 style="font-family: 'Lora', Georgia, serif; font-size: 20px; margin: 0 0 8px;">Neuer Fragebogen eingegangen</h1>
+    <p style="margin: 0; color: #6B6B6B;">
       <strong>${variantTitle}</strong> &middot; ${date} um ${time}
     </p>
   </div>
 
   ${formatAnswersHtml(steps, answers)}
 
-  <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #E2E8F0; font-size: 12px; color: #A0AEC0;">
+  <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #E4F0F2; font-size: 12px; color: #6B6B6B;">
     Automatisch versendet vom myplanb Fragebogen.
   </div>
 </body>
@@ -62,7 +62,7 @@ Automatisch versendet vom myplanb Fragebogen.`
 /** Generate the client confirmation email */
 export function buildClientEmail(data: EmailData) {
   const { firstName } = data
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || ''
+  const calendlyUrl = 'https://calendly.com/martina-myplanb/50min'
 
   const subject = 'Danke für deine Angaben – so geht es weiter'
 
@@ -74,7 +74,7 @@ So geht es weiter:
 - Ich erstelle ein persönliches Profil und bereite konkrete Empfehlungen vor.
 - Innerhalb weniger Werktage melde ich mich bei dir.
 
-${calendlyUrl ? `Du möchtest gleich einen Beratungstermin vereinbaren?\n→ ${calendlyUrl}\n` : ''}
+Du möchtest gleich einen Beratungstermin vereinbaren?\n→ ${calendlyUrl}\n
 Bei Fragen erreichst du mich unter beratung@myplanb.at.
 
 Herzliche Grüße,
@@ -84,8 +84,8 @@ Martina von myplanb`
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #2D3748; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <h1 style="font-size: 22px;">Hallo ${firstName}!</h1>
+<body style="font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #2D2D2D; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <h1 style="font-family: 'Lora', Georgia, serif; font-size: 22px;">Hallo ${firstName}!</h1>
 
   <p>Vielen Dank, dass du dir die Zeit genommen hast! Deine Angaben sind bei mir angekommen.</p>
 
@@ -95,20 +95,18 @@ Martina von myplanb`
     <li>Innerhalb weniger Werktage melde ich mich bei dir.</li>
   </ul>
 
-  ${calendlyUrl ? `
-  <div style="background: #F7FAFC; border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center;">
+  <div style="background: #FDF8F3; border-radius: 14px; padding: 24px; margin: 24px 0; text-align: center;">
     <p style="margin: 0 0 16px; font-weight: 600;">Du möchtest gleich einen Beratungstermin vereinbaren?</p>
-    <a href="${calendlyUrl}" style="display: inline-block; background: #3182CE; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500;">
+    <a href="${calendlyUrl}" style="display: inline-block; background: #1B6E7C; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600;">
       Jetzt Termin buchen
     </a>
   </div>
-  ` : ''}
 
   <p>Bei Fragen erreichst du mich unter <a href="mailto:beratung@myplanb.at">beratung@myplanb.at</a>.</p>
 
   <p>Herzliche Grüße,<br><strong>Martina von myplanb</strong></p>
 
-  <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #E2E8F0; font-size: 12px; color: #A0AEC0;">
+  <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #E4F0F2; font-size: 12px; color: #6B6B6B;">
     Diese E-Mail wurde automatisch versendet. Bitte antworte nicht direkt auf diese E-Mail.
   </div>
 </body>

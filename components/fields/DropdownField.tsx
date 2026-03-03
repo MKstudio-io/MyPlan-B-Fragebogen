@@ -24,7 +24,7 @@ export function DropdownField({ config, value, error, onChange }: DropdownFieldP
         {config.label}{config.required && ' *'}
       </Label>
       <Select value={value || ''} onValueChange={onChange}>
-        <SelectTrigger className={error ? 'border-red-500' : ''}>
+        <SelectTrigger className={error ? 'border-destructive' : ''}>
           <SelectValue placeholder={config.placeholder || 'Bitte wählen...'} />
         </SelectTrigger>
         <SelectContent>
@@ -39,7 +39,7 @@ export function DropdownField({ config, value, error, onChange }: DropdownFieldP
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

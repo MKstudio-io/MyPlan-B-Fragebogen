@@ -56,7 +56,7 @@ export function DateField({ config, value, error, onChange }: DateFieldProps) {
       </Label>
       <div className="grid grid-cols-3 gap-2">
         <Select value={day} onValueChange={(v) => updatePart('day', v)}>
-          <SelectTrigger className={error ? 'border-red-500' : ''}>
+          <SelectTrigger className={error ? 'border-destructive' : ''}>
             <SelectValue placeholder="Tag" />
           </SelectTrigger>
           <SelectContent>
@@ -67,7 +67,7 @@ export function DateField({ config, value, error, onChange }: DateFieldProps) {
         </Select>
 
         <Select value={month} onValueChange={(v) => updatePart('month', v)}>
-          <SelectTrigger className={error ? 'border-red-500' : ''}>
+          <SelectTrigger className={error ? 'border-destructive' : ''}>
             <SelectValue placeholder="Monat" />
           </SelectTrigger>
           <SelectContent>
@@ -78,7 +78,7 @@ export function DateField({ config, value, error, onChange }: DateFieldProps) {
         </Select>
 
         <Select value={year} onValueChange={(v) => updatePart('year', v)}>
-          <SelectTrigger className={error ? 'border-red-500' : ''}>
+          <SelectTrigger className={error ? 'border-destructive' : ''}>
             <SelectValue placeholder="Jahr" />
           </SelectTrigger>
           <SelectContent>
@@ -92,7 +92,7 @@ export function DateField({ config, value, error, onChange }: DateFieldProps) {
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

@@ -23,13 +23,13 @@ export function TextareaField({ config, value, error, onChange }: TextareaFieldP
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
         rows={config.rows || 3}
-        className={error ? 'border-red-500' : ''}
+        className={error ? 'border-destructive' : ''}
       />
       {config.hint && (
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

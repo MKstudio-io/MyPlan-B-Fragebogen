@@ -34,7 +34,7 @@ export function PlaceAutocomplete({ config, value, error, onChange }: PlaceAutoc
 
     setIsLoading(true)
     try {
-      const res = await fetch(`/api/places?q=${encodeURIComponent(q)}`)
+      const res = await fetch(`/api/places.php?q=${encodeURIComponent(q)}`)
       if (res.ok) {
         const data: NominatimResult[] = await res.json()
         setSuggestions(data)
@@ -93,7 +93,7 @@ export function PlaceAutocomplete({ config, value, error, onChange }: PlaceAutoc
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onFocus={() => { if (suggestions.length > 0) setIsOpen(true) }}
-          className={error ? 'border-red-500' : ''}
+          className={error ? 'border-destructive' : ''}
           autoComplete="off"
         />
         {isLoading && (
@@ -120,7 +120,7 @@ export function PlaceAutocomplete({ config, value, error, onChange }: PlaceAutoc
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

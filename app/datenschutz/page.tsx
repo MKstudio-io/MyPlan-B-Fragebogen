@@ -10,8 +10,9 @@ export default function DatenschutzPage() {
         <CardContent className="prose prose-sm max-w-none">
           <h3 className="text-lg font-semibold mt-6 mb-2">1. Verantwortliche Stelle</h3>
           <p className="text-muted-foreground">
-            myplanb<br />
-            [Adresse wird ergänzt]<br />
+            Martina Kreiner<br />
+            Dr. Hans-Gollner Str. 3<br />
+            6112 Wattens<br />
             E-Mail: beratung@myplanb.at
           </p>
 
@@ -29,8 +30,8 @@ export default function DatenschutzPage() {
 
           <h3 className="text-lg font-semibold mt-6 mb-2">3. Zweck der Verarbeitung</h3>
           <p className="text-muted-foreground">
-            Die erhobenen Daten dienen ausschließlich der Erstellung einer persönlichen
-            Potenzialanalyse und der Kontaktaufnahme im Rahmen der myplanb-Beratung.
+            Die erhobenen Daten dienen ausschließlich der Erstellung eines persönlichen
+            Orientierungsprofils und der Kontaktaufnahme im Rahmen der myplanb-Beratung.
           </p>
 
           <h3 className="text-lg font-semibold mt-6 mb-2">4. Rechtsgrundlage</h3>

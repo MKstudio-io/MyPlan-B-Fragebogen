@@ -4,35 +4,40 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 13% 26%;
+    /* myplanb brand palette – aligned with myplanb-website */
+    --background: 0 0% 100%;            /* #FFFFFF  white */
+    --foreground: 0 0% 18%;           /* #2D2D2D  body text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 13% 26%;
+    --card: 0 0% 100%;                /* #FFFFFF  white cards */
+    --card-foreground: 0 0% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 13% 26%;
+    --popover-foreground: 0 0% 18%;
 
-    --primary: 220 13% 26%;
+    --primary: 189 63% 30%;           /* #1B6E7C  petrol */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 220 13% 26%;
+    --secondary: 189 38% 92%;         /* #E4F0F2  petrol-light */
+    --secondary-foreground: 189 68% 24%; /* #155A66  petrol-dark */
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 30 45% 97%;              /* #FDF8F3  cream */
+    --muted-foreground: 0 0% 42%;     /* #6B6B6B  gray */
 
-    --accent: 207 90% 54%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 38 100% 67%;            /* #FFBD59  amber */
+    --accent-foreground: 189 68% 24%; /* #155A66  petrol-dark */
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 207 90% 54%;
+    --border: 189 20% 90%;            /* petrol-tinted border */
+    --input: 189 20% 90%;
+    --ring: 189 63% 30%;              /* petrol focus ring */
 
-    --radius: 0.5rem;
+    --radius: 0.875rem;               /* 14px — rounded cards */
+
+    /* extra brand tokens */
+    --petrol-dark: 189 68% 24%;       /* #155A66 */
+    --peach: 20 70% 70%;              /* #E89F7B */
   }
 }
 
@@ -43,11 +48,13 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-size: 17px;
+    line-height: 1.7;
   }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-semibold tracking-tight;
+  @apply font-semibold tracking-tight font-serif;
 }
 
 h1 {
@@ -71,13 +78,13 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted;
+  @apply bg-secondary;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/30 rounded-full;
+  @apply bg-primary/30 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-foreground/50;
+  @apply bg-primary/50;
 }

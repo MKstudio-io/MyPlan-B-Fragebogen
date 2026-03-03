@@ -25,13 +25,13 @@ export function TextField({ config, value, error, onChange }: TextFieldProps) {
         placeholder={config.placeholder}
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
-        className={error ? 'border-red-500' : ''}
+        className={error ? 'border-destructive' : ''}
       />
       {config.hint && (
         <p className="text-xs text-muted-foreground">{config.hint}</p>
       )}
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
     </div>
   )

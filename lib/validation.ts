@@ -1,4 +1,5 @@
 import type { QuestionConfig, StepConfig, TextareaWithDontKnowValue, CheckboxGroupValue } from './types'
+import { evaluateCondition } from './types'
 import { OTHER_PREFIX } from './constants'
 
 /** Validate a single step's answers. Returns a map of field_id -> error message. */
@@ -9,6 +10,10 @@ export function validateStep(
   const errors: Record<string, string> = {}
 
   for (const question of step.questions) {
+    // Skip validation for conditionally hidden fields
+    if (question.condition && !evaluateCondition(question.condition, answers)) {
+      continue
+    }
     const error = validateField(question, answers[question.id])
     if (error) {
       errors[question.id] = error
@@ -98,6 +103,11 @@ export function validateField(
     case 'chips': {
       const arr = (value as string[]) || []
       if (arr.length === 0) return `Bitte mindestens eine Option wählen`
+      // If "other" is selected, check that text is provided
+      const otherEntry = arr.find(s => s.startsWith(OTHER_PREFIX))
+      if (otherEntry && !otherEntry.slice(OTHER_PREFIX.length).trim()) {
+        return 'Bitte einen Text für "Sonstiges" eingeben'
+      }
       return null
     }
 
@@ -109,6 +119,11 @@ export function validateField(
 
     case 'gdpr-checkbox': {
       if (value !== true) return 'Bitte stimme der Datenschutzerklärung zu'
+      return null
+    }
+
+    case 'slider': {
+      if (value === undefined || value === null) return 'Bitte einen Wert wählen'
       return null
     }
 
@@ -126,6 +141,10 @@ export function validateSubmission(
 
   for (const step of steps) {
     for (const question of step.questions) {
+      // Skip validation for conditionally hidden fields
+      if (question.condition && !evaluateCondition(question.condition, answers)) {
+        continue
+      }
       const error = validateField(question, answers[question.id])
       if (error) {
         errors.push({ field: question.id, message: error })

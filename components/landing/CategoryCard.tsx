@@ -24,7 +24,7 @@ export function CategoryCard({ card }: CategoryCardProps) {
   }
 
   return (
-    <Card className="flex flex-col hover:shadow-md transition-shadow">
+    <Card className="flex flex-col border-t-4 border-t-primary hover:shadow-brand-lg hover:-translate-y-1 transition-all duration-300">
       <CardHeader>
         <CardTitle className="text-xl">{card.title}</CardTitle>
         <CardDescription>{card.subtitle}</CardDescription>
@@ -33,7 +33,7 @@ export function CategoryCard({ card }: CategoryCardProps) {
         <ul className="space-y-2 mb-6 flex-1">
           {card.bullets.map((bullet, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-              <ChevronRight className="h-4 w-4 mt-0.5 text-accent shrink-0" />
+              <ChevronRight className="h-4 w-4 mt-0.5 text-primary shrink-0" />
               <span>{bullet}</span>
             </li>
           ))}

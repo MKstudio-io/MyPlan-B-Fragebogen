@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Pencil } from 'lucide-react'
 import type { StepConfig, TextareaWithDontKnowValue, CheckboxGroupValue } from '@/lib/types'
+import { evaluateCondition } from '@/lib/types'
 import { OTHER_PREFIX } from '@/lib/constants'
 
 interface SummaryStepProps {
@@ -23,7 +24,15 @@ function formatAnswer(type: string, value: unknown): string {
     }
     case 'chips': {
       const arr = value as string[]
-      return arr.length > 0 ? arr.join(', ') : '–'
+      if (arr.length === 0) return '–'
+      const formatted = arr.map(item => {
+        if (item.startsWith(OTHER_PREFIX)) {
+          const text = item.slice(OTHER_PREFIX.length)
+          return `Sonstiges: ${text || '–'}`
+        }
+        return item
+      })
+      return formatted.join(', ')
     }
     case 'checkbox-group': {
       const v = value as CheckboxGroupValue
@@ -47,6 +56,10 @@ function formatAnswer(type: string, value: unknown): string {
     }
     case 'gdpr-checkbox':
       return value === true ? 'Zugestimmt' : 'Nicht zugestimmt'
+    case 'slider': {
+      if (value === undefined || value === null) return '–'
+      return String(value)
+    }
     default:
       return String(value)
   }
@@ -79,14 +92,19 @@ export function SummaryStep({ steps, answers, onEditStep }: SummaryStepProps) {
           </CardHeader>
           <CardContent>
             <dl className="space-y-3">
-              {step.questions.map(question => (
-                <div key={question.id}>
-                  <dt className="text-sm text-muted-foreground">{question.label}</dt>
-                  <dd className="text-sm mt-0.5">
-                    {formatAnswer(question.type, answers[question.id])}
-                  </dd>
-                </div>
-              ))}
+              {step.questions.map(question => {
+                if (question.condition && !evaluateCondition(question.condition, answers)) {
+                  return null
+                }
+                return (
+                  <div key={question.id}>
+                    <dt className="text-sm text-muted-foreground">{question.label}</dt>
+                    <dd className="text-sm mt-0.5">
+                      {formatAnswer(question.type, answers[question.id])}
+                    </dd>
+                  </div>
+                )
+              })}
             </dl>
           </CardContent>
         </Card>
