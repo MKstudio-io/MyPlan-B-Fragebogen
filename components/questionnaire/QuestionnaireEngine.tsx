@@ -118,7 +118,7 @@ export function QuestionnaireEngine({ variant }: QuestionnaireEngineProps) {
     setSubmitError(null)
 
     try {
-      const res = await fetch('/api/submit.php', {
+      const res = await fetch(`/myplanbfragebogen/api/submit.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

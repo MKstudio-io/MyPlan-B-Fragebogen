@@ -34,7 +34,7 @@ export default function RootLayout({
             <div className="container flex h-16 items-center justify-between">
               <a href="/" className="flex items-center space-x-2">
                 <Image
-                  src="/Logo_PlanB_ohneText_white_transparent.png"
+                  src="/myplanbfragebogen/Logo_PlanB_ohneText_white_transparent.png"
                   alt="MyPlanB"
                   width={83}
                   height={40}

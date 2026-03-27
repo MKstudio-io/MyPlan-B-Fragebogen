@@ -11,7 +11,7 @@ export default function HomePage() {
     <div className="container py-12 md:py-20 max-w-4xl">
       <div className="text-center mb-12">
         <Image
-          src="/Logo_PlanB_s-p.png"
+          src="/myplanbfragebogen/Logo_PlanB_s-p.png"
           alt="MyPlanB"
           width={400}
           height={192}

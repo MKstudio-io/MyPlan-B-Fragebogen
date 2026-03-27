@@ -34,7 +34,7 @@ export function PlaceAutocomplete({ config, value, error, onChange }: PlaceAutoc
 
     setIsLoading(true)
     try {
-      const res = await fetch(`/api/places.php?q=${encodeURIComponent(q)}`)
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/api/places.php?q=${encodeURIComponent(q)}`)
       if (res.ok) {
         const data: NominatimResult[] = await res.json()
         setSuggestions(data)
